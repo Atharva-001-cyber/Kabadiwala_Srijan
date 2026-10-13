@@ -130,7 +130,8 @@ export const signInWithGoogle = async (): Promise<{
     if (userMsg.includes('auth/popup-closed-by-user')) {
       userMsg = 'Google Sign-in was cancelled (popup closed).';
     } else if (userMsg.includes('auth/unauthorized-domain')) {
-      userMsg = 'Domain not authorized: Please add localhost to Firebase Console > Authentication > Settings > Authorized domains.';
+      const currentHost = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+      userMsg = `Domain not authorized (${currentHost}): Please add "${currentHost}" to Firebase Console > Authentication > Settings > Authorized domains.`;
     } else if (userMsg.includes('auth/operation-not-allowed')) {
       userMsg = 'Google Provider not enabled: Please enable Google in Firebase Console > Authentication > Sign-in method.';
     }

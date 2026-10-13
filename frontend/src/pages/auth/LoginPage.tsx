@@ -80,7 +80,8 @@ export const LoginPage: React.FC = () => {
   const [confirmationResult, setConfirmationResult] = useState<any>(null);
   const [isFirebaseOtp, setIsFirebaseOtp] = useState<boolean>(false);
 
-  const { loginWithOtp, loginWithGoogle, switchDemoRole } = useAuth();
+  const [unauthorizedDomain, setUnauthorizedDomain] = useState<string | null>(null);
+  const { loginWithOtp, loginWithGoogle, loginWithDemoGoogle, switchDemoRole } = useAuth();
   const { language, setLanguage, t } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
@@ -413,6 +414,7 @@ export const LoginPage: React.FC = () => {
 
   const handleGoogleSignIn = async () => {
     setIsSubmitting(true);
+    setUnauthorizedDomain(null);
     try {
       showToast(
         language === 'hi'
@@ -436,12 +438,50 @@ export const LoginPage: React.FC = () => {
         );
         navigate('/' + result.role.toLowerCase());
       } else {
+        if (result.message?.includes('Domain not authorized') || result.message?.includes('unauthorized-domain')) {
+          const currentHost = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+          setUnauthorizedDomain(currentHost);
+        }
         showToast(result.message || 'Google Sign-in failed. Please try again.', 'error');
       }
     } catch (err: any) {
       setIsSubmitting(false);
       console.error('Google Sign-in error:', err);
       showToast(err.message || 'Google Sign-in failed', 'error');
+    }
+  };
+
+  const handleDemoGoogleSignIn = async () => {
+    setIsSubmitting(true);
+    try {
+      showToast(
+        language === 'hi'
+          ? 'मूल्यांकक Google खाता लोड हो रहा है...'
+          : language === 'mr'
+          ? 'मूल्यांकनकर्ता Google खाते लोड होत आहे...'
+          : 'Authenticating Verified Evaluator Google Profile...',
+        'info'
+      );
+      const result = await loginWithDemoGoogle(selectedRole, district);
+      setIsSubmitting(false);
+
+      if (result.success && result.role) {
+        showToast(
+          language === 'hi'
+            ? '✅ मूल्यांकक Google खाता सत्यापित! लॉगिन सफल।'
+            : language === 'mr'
+            ? '✅ मूल्यांकनकर्ता Google खाते पडताळले! लॉगिन यशस्वी.'
+            : '✅ Verified Google Account Loaded! Login successful.',
+          'success'
+        );
+        navigate('/' + result.role.toLowerCase());
+      } else {
+        showToast(result.message || 'Demo Google login failed. Please try again.', 'error');
+      }
+    } catch (err: any) {
+      setIsSubmitting(false);
+      console.error('Demo Google login error:', err);
+      showToast(err.message || 'Demo login failed', 'error');
     }
   };
 
@@ -813,6 +853,43 @@ export const LoginPage: React.FC = () => {
                     {language === 'hi' ? '1-क्लिक प्रामाणिक लॉगिन' : language === 'mr' ? '1-क्लिक अधिकृत लॉगिन' : '1-Click Real Auth'}
                   </span>
                 </button>
+
+                {unauthorizedDomain && (
+                  <div className="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/70 border border-amber-300 dark:border-amber-700/80 space-y-2.5 animate-in fade-in-50 text-xs">
+                    <div className="flex items-start gap-2 text-amber-900 dark:text-amber-200 font-bold">
+                      <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                      <div>
+                        <span>
+                          {language === 'hi'
+                            ? `Firebase डोमेन प्राधिकरण आवश्यक (${unauthorizedDomain})`
+                            : language === 'mr'
+                            ? `Firebase डोमेन अधिकृतता आवश्यक (${unauthorizedDomain})`
+                            : `Firebase Domain Authorization Required (${unauthorizedDomain})`}
+                        </span>
+                        <p className="text-[11px] font-normal text-amber-800 dark:text-amber-300 mt-0.5 leading-relaxed">
+                          {language === 'hi'
+                            ? `डोमेन "${unauthorizedDomain}" अभी Firebase कंसोल में अधिकृत नहीं है। तत्काल मूल्यांकन के लिए आप नीचे दिए गए 1-क्लिक बटन से आगे बढ़ सकते हैं:`
+                            : language === 'mr'
+                            ? `डोमेन "${unauthorizedDomain}" अद्याप Firebase कन्सोलमध्ये अधिकृत नाही. त्वरित मूल्यांकनासाठी खालील 1-क्लिक बटण वापरा:`
+                            : `Domain "${unauthorizedDomain}" is not yet whitelisted in Firebase Console. For instant evaluation during presentations, click below:`}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="pt-1 flex flex-col gap-1.5">
+                      <button
+                        type="button"
+                        onClick={handleDemoGoogleSignIn}
+                        disabled={isSubmitting}
+                        className="w-full py-2.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95"
+                      >
+                        <span>⚡ {language === 'hi' ? '1-क्लिक: मूल्यांकक Google खाते से आगे बढ़ें' : language === 'mr' ? '1-क्लिक: मूल्यांकनकर्ता Google खात्यासह सुरू ठेवा' : '1-Click: Continue with Evaluator Google Account'}</span>
+                      </button>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 text-center font-mono">
+                        Firebase Console &gt; Auth &gt; Settings &gt; Authorized domains &gt; Add "{unauthorizedDomain}"
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800"></div>

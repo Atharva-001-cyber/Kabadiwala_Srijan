@@ -26,6 +26,7 @@ interface AuthContextType {
     extra?: { facilityName?: string; adminPasscode?: string }
   ) => Promise<LoginResult>;
   loginWithGoogle: (role: UserRole, district?: string) => Promise<LoginResult>;
+  loginWithDemoGoogle: (role: UserRole, district?: string) => Promise<LoginResult>;
   switchDemoRole: (role: UserRole) => Promise<LoginResult>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -192,6 +193,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const loginWithDemoGoogle = async (selectedRole: UserRole, district?: string): Promise<LoginResult> => {
+    try {
+      setIsLoading(true);
+      const res = await api.syncGoogleUser({
+        googleUser: {
+          uid: 'google_eval_judge_user',
+          email: 'judge.evaluator@srijan2026.gov.in',
+          displayName: 'Judge Arun Sharma (Google Verified)',
+          photoURL: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
+          phoneNumber: '9876543210'
+        },
+        role: selectedRole,
+        district
+      });
+
+      if (res.success && res.token) {
+        setAuthToken(res.token);
+        setUser(res.user);
+        setRole(res.user.role);
+        setCollectorProfile(res.collectorProfile || null);
+        setRecyclerProfile(res.recyclerProfile || null);
+        return { success: true, role: res.user.role };
+      }
+      return { success: false, message: 'Could not sync Google demo profile' };
+    } catch (err: any) {
+      console.warn('Demo Google login error:', err.message || 'Login failed');
+      return { success: false, message: err.message || 'Login failed' };
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const switchDemoRole = async (targetRole: UserRole): Promise<LoginResult> => {
     const rolePhones: Record<UserRole, string> = {
       COLLECTOR: '9876543210',
@@ -256,6 +289,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isDemoUser,
         loginWithOtp,
         loginWithGoogle,
+        loginWithDemoGoogle,
         switchDemoRole,
         logout,
         refreshUser,
