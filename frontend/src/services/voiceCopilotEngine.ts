@@ -653,7 +653,7 @@ export class VoiceCopilotEngine {
     apiKey: string
   ): Promise<(CopilotResponse & { userText: string }) | null> {
     const cleanMime = mimeType.split(';')[0] || 'audio/webm';
-    const systemPrompt = `You are "Kabaad Saathi", an expert Indian E-Waste Recycling & Regulatory AI Assistant created for Smart India Hackathon (SIH #229).
+    const systemPrompt = `You are "Kabaad Saathi", an expert Indian E-Waste Recycling & Regulatory AI Assistant created for Srijan 2026.
 
 LIVE APP DATA & CONTEXT:
 - User Name: ${context.userName || 'User'}
@@ -744,7 +744,7 @@ RETURN JSON ONLY matching this EXACT schema:
     apiKey: string
   ): Promise<CopilotResponse | null> {
     const detectedLang = detectSpokenLanguage(queryText, context.language);
-    const systemPrompt = `You are "Kabaad Saathi", an expert Indian E-Waste Recycling & Regulatory AI Assistant created for Smart India Hackathon (SIH #229).
+    const systemPrompt = `You are "Kabaad Saathi", an expert Indian E-Waste Recycling & Regulatory AI Assistant created for Srijan 2026.
 
 LIVE APP DATA & CONTEXT:
 - Name: ${context.userName || 'User'}
@@ -1164,12 +1164,12 @@ RETURN JSON ONLY matching this EXACT schema:
       };
     }
 
-    // 9.5 SIH Hackathon Problem Statement #229 & Platform Overview Query
-    if (has(/sih|problem|hackathon|kabadiwala|connect|project|purpose|about|solution/i)) {
+    // 9.5 Srijan Hackathon Platform Overview Query
+    if (has(/srijan|sih|problem|hackathon|kabadiwala|connect|project|purpose|about|solution/i)) {
       const text = pick(
-        'Kabadiwala Connect (SIH #229) is a tech platform bridging India 1.5 million informal scrap collectors directly with CPCB-authorized recyclers. Features include AI Mandi rates, YOLO camera scan, Form-6 digital transport manifests, EPR credit tracking, and offline village soundbox payouts.',
-        'कबाड़ साथी (SIH #229) भारत के 15 लाख असंगठित कबाड़ियों को सीधे CPCB अधिकृत रीसाइक्लर्स से जोड़ने वाला डिजिटल प्लेटफॉर्म है। इसमें AI मंडी भाव, कैमरा स्कैनर, फॉर्म-6 ट्रांसपोर्ट मैनिफेस्ट और ऑफ़लाइन विलेज वॉयस साउंडबॉक्स शामिल है।',
-        'कबाडी साथी (SIH #229) हा असंगठित कबाडीवाल्यांना थेट CPCB रीसायकलर्सशी जोडणारा डिजिटल प्लॅटफॉर्म आहे.'
+        'Kabadiwala Connect (Srijan 2026) is a tech platform bridging India 1.5 million informal scrap collectors directly with CPCB-authorized recyclers. Features include AI Mandi rates, YOLO camera scan, Form-6 digital transport manifests, EPR credit tracking, and offline village soundbox payouts.',
+        'कबाड़ साथी (सृजन 2026) भारत के 15 लाख असंगठित कबाड़ियों को सीधे CPCB अधिकृत रीसाइक्लर्स से जोड़ने वाला डिजिटल प्लेटफॉर्म है। इसमें AI मंडी भाव, कैमरा स्कैनर, फॉर्म-6 ट्रांसपोर्ट मैनिफेस्ट और ऑफ़लाइन विलेज वॉयस साउंडबॉक्स शामिल है।',
+        'कबाडी साथी (सृजन 2026) हा असंगठित कबाडीवाल्यांना थेट CPCB रीसायकलर्सशी जोडणारा डिजिटल प्लॅटफॉर्म आहे.'
       );
       return {
         text,
@@ -1227,7 +1227,7 @@ RETURN JSON ONLY matching this EXACT schema:
         materialCategory: 'PCB & Printed Circuit Boards',
         weightKg: 50,
         issueDate: new Date().toLocaleDateString('en-IN'),
-        qrCodeValue: 'CPCB_FORM6_VERIFIED_229',
+        qrCodeValue: 'CPCB_FORM6_VERIFIED_2026',
         status: 'VERIFIED'
       };
       return {

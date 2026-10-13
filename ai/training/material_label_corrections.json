@@ -10,10 +10,34 @@
       "width": 640,
       "height": 640,
       "class_id": 5,
-      "box_xyxy": [34, 190, 548, 621],
-      "reason": "Original box covers left end cover only. Proposed box covers visible motor assembly; approximate manual boundary.",
+      "box_xyxy": [34, 194, 434, 582],
+      "reason": "Original-resolution re-review: original label covers only left end cover; earlier proposal included ground to right/bottom. Tighter proposal encloses visible motor including top terminal box. Manual boundary; independent annotation and source/session review still required.",
       "source": "https://universe.roboflow.com/project-3swgf/electric-motor-housing1/dataset/1",
       "source_declared_license": "CC BY 4.0"
+    },
+    {
+      "image": "train/images/cable_rf_train_001_53df284a.jpg",
+      "sha256": "53df284aa31d5c14181bd282adae0f6578d3bf0e7541f47dac32682fe1a612a0",
+      "width": 565,
+      "height": 279,
+      "class_id": 4,
+      "box_xyxy": [0, 58, 383, 232],
+      "reason": "Original-resolution review: encloses visible cord loops and connectors rather than entire adapter. Rectangular box includes some adjacent adapter/background; do not infer copper content. Independent review still required.",
+      "source": "",
+      "source_declared_license": "",
+      "source_status": "UNVERIFIED: do not inherit unrelated cables-nl42k metadata"
+    },
+    {
+      "image": "train/images/motor_rf_train_095_be17d718.jpg",
+      "sha256": "be17d718f8cf7b39f8fe0b8c8bd6693bd03a681cef3239b061be6a90955b79d2",
+      "width": 640,
+      "height": 640,
+      "class_id": 5,
+      "box_xyxy": [65, 299, 625, 498],
+      "reason": "Original-resolution review: includes visible blue motor, fins, terminal housing and rear cover, not only right cover. Excludes separate upper transmission and external cable. Approximate manual boundary; source/session and independent review pending.",
+      "source": "",
+      "source_declared_license": "",
+      "source_status": "UNVERIFIED per-image provenance"
     }
   ],
   "held_for_review": [

@@ -2,6 +2,7 @@
 import argparse
 import csv
 import hashlib
+import json
 from pathlib import Path
 from prepare_device_dataset import parse_label
 from audit_material_coverage import NAMES
@@ -10,6 +11,25 @@ from semantic_preflight import QUARANTINED_PREFIXES
 FIELDS = ['image', 'label', 'split', 'sha256', 'existing_classes',
           'issue', 'review_status', 'source', 'use_permission', 'device_session_group',
           'reviewer', 'review_notes']
+
+def apply_visual_holds(rows, manifest=None):
+    manifest = manifest or Path(__file__).with_name('material_visual_holds.json')
+    holds = json.loads(manifest.read_text(encoding='utf-8'))['holds']
+    by_path = {}
+    for hold in holds:
+        key = hold['image'].replace('\\', '/')
+        if key in by_path:
+            raise ValueError('Duplicate visual hold path')
+        by_path[key] = hold
+    for row in rows:
+        hold = by_path.get(row['image'].replace('\\', '/'))
+        if hold:
+            if row['sha256'] != hold['sha256']:
+                raise ValueError('Visual hold image changed; re-review required: ' + row['image'])
+            row['issue'] += '|VISUAL_LABEL_HOLD'
+            row['review_notes'] = hold['reason']
+            # A negative review finding never approves training or permissions.
+    return rows
 
 def review_rows(root):
     root = root.resolve()
@@ -53,7 +73,7 @@ def review_rows(root):
                 'issue':'|'.join(sorted(set(issues))) or 'VISUAL_AND_SOURCE_REVIEW_REQUIRED',
                 'review_status':'PENDING',
             })
-    return rows
+    return apply_visual_holds(rows)
 
 def write_review(root, output):
     rows = review_rows(root)

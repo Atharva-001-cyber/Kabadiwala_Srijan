@@ -249,10 +249,10 @@ export const JudgeDemoModal: React.FC<JudgeDemoModalProps> = ({ isOpen, onClose 
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-lg sm:text-xl font-black text-white">
-                  {language === 'hi' ? 'एसआईएच 2026 जज प्रदर्शन गाइड' : language === 'mr' ? 'एसआयएच 2026 परीक्षक मार्गदर्शक' : 'SIH 2026 Judge Demonstration Guide'}
+                  {language === 'hi' ? 'सृजन 2026 जज प्रदर्शन गाइड' : language === 'mr' ? 'सृजन 2026 परीक्षक मार्गदर्शक' : 'Srijan 2026 Jury Demonstration Guide'}
                 </h2>
                 <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-emerald-900 text-emerald-300 border border-emerald-700">
-                  {language === 'hi' ? 'पीएस #229' : language === 'mr' ? 'पीएस #229' : 'PS #229'}
+                  {language === 'hi' ? 'सृजन 2026' : language === 'mr' ? 'सृजन 2026' : 'SRIJAN 2026'}
                 </span>
               </div>
               <p className="text-xs text-slate-300 font-medium mt-0.5">
@@ -339,7 +339,7 @@ export const JudgeDemoModal: React.FC<JudgeDemoModalProps> = ({ isOpen, onClose 
 
         {/* Modal Footer */}
         <div className="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400 shrink-0">
-          <span>{t.appTitle || 'Kabadiwala Connect'} • {language === 'hi' ? 'स्मार्ट इंडिया हैकथॉन 2026' : language === 'mr' ? 'स्मार्ट इंडिया हॅकाथॉन 2026' : 'Smart India Hackathon 2026'}</span>
+          <span>{t.appTitle || 'Kabadiwala Connect'} • {language === 'hi' ? 'सृजन 2026' : language === 'mr' ? 'सृजन 2026' : 'Srijan 2026'}</span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-bold"

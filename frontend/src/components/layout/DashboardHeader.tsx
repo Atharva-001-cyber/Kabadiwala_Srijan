@@ -113,7 +113,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onToggleMobile
       return;
     }
 
-    // SIH Evaluation Sandbox: Fast 1-click switch for demo accounts
+    // Srijan Evaluation Sandbox: Fast 1-click switch for demo accounts
     if (isDemoUser) {
       await switchDemoRole(newRole);
       if (newRole === 'COLLECTOR') navigate('/collector');
@@ -131,11 +131,11 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onToggleMobile
   const handleAdminPasscodeSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     const clean = adminPasscode.trim().toUpperCase();
-    if (clean !== 'SIH2026-CPCB-ADMIN' && clean !== 'CPCB-ADMIN') {
+    if (clean !== 'SRIJAN2026-CPCB-ADMIN' && clean !== 'SIH2026-CPCB-ADMIN' && clean !== 'CPCB-ADMIN') {
       setPasscodeError(
         language === 'hi'
           ? 'अमान्य मास्टर पासकोड। कृपया वैध सीपीसीबी पासकोड दर्ज करें।'
-          : 'Invalid Master Passcode. Please enter authorized CPCB credentials (SIH2026-CPCB-ADMIN).'
+          : 'Invalid Master Passcode. Please enter authorized CPCB credentials (SRIJAN2026-CPCB-ADMIN).'
       );
       return;
     }
@@ -195,7 +195,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onToggleMobile
           </span>
           <span className="text-slate-600 shrink-0 hidden lg:inline">•</span>
           <span className="text-slate-400 truncate hidden lg:inline">
-            {language === 'hi' ? 'SIH 2026 समस्या विवरण #26229' : language === 'mr' ? 'SIH 2026 समस्या विवरण #26229' : 'SIH 2026 Problem Statement #26229'}
+            {language === 'hi' ? 'सृजन 2026 • ई-कचरा नवाचार मंच' : language === 'mr' ? 'सृजन 2026 • ई-कचरा नवाचार मंच' : 'Srijan 2026 • E-Waste Innovation Platform'}
           </span>
         </div>
         <div className="flex items-center gap-3 shrink-0">
@@ -567,7 +567,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({ onToggleMobile
                   }
                 </h3>
                 <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 font-mono">
-                  RBAC Level 3 Guard • SIH-26229
+                  RBAC Level 3 Guard • CPCB-VERIFIED
                 </span>
               </div>
             </div>

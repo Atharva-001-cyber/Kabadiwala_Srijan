@@ -169,7 +169,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, autoStar
           }`}>
             <div className="inline-flex items-center gap-1.5 mb-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-[11px] font-bold tracking-wider uppercase shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>SIH 2026 OFFICIAL PLATFORM</span>
+              <span>SRIJAN 2026 OFFICIAL PLATFORM</span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight drop-shadow-md">
@@ -279,7 +279,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, autoStar
       {/* FOOTER */}
       <div className="relative z-30 w-full p-3 text-center border-t border-emerald-500/15 bg-white/70 dark:bg-slate-950/80 backdrop-blur-md">
         <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 font-mono">
-          SIH 2026 #229 • Ministry of Mines & JNARDDC
+          Srijan 2026 • Ministry of Mines & JNARDDC
         </p>
       </div>
     </div>

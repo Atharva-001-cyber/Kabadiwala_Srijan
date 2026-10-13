@@ -308,7 +308,7 @@ export const DatasetManagerPage: React.FC = () => {
 
       const blob = new Blob([blobContent], { type: mimeType });
       const url = URL.createObjectURL(blob);
-      const filename = `cpcb_sih229_${ds.id}_dataset_${new Date().toISOString().slice(0, 10)}.${format}`;
+      const filename = `cpcb_srijan_${ds.id}_dataset_${new Date().toISOString().slice(0, 10)}.${format}`;
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
@@ -696,7 +696,7 @@ export const DatasetManagerPage: React.FC = () => {
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `cpcb_sih229_ml_vision_manifest_${new Date().toISOString().slice(0, 10)}.json`;
+                    a.download = `cpcb_srijan_ml_vision_manifest_${new Date().toISOString().slice(0, 10)}.json`;
                     a.click();
                     showToast(
                       language === 'hi'

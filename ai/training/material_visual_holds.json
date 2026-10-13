@@ -1,0 +1,12 @@
+{
+  "training_approved": false,
+  "review_basis": "Assistant inspection of annotated sheets 004, 008, 011 and 023; holds only, not corrected annotations or source approval.",
+  "holds": [
+    {"image": "train/images/cable_rf_train_001_53df284a.jpg", "sha256": "53df284aa31d5c14181bd282adae0f6578d3bf0e7541f47dac32682fe1a612a0", "reason": "Cable box includes large power adapter. Component boundary policy and corrected annotation required."},
+    {"image": "train/images/crt_rf_train_001_26b4f2b6.jpg", "sha256": "26b4f2b679fae05102e232bc0bec2bfe4e7205dbcd403ed161bd9c618d60be2c", "reason": "Yellow scene has no identifiable CRT TV/monitor in annotated regions. Reject current CRT semantics."},
+    {"image": "train/images/magnet_rf_train_001_b9ec2b37.jpg", "sha256": "b9ec2b371b4631f7158cd850d6e5c32747a5e3fb1fdcb839f56fb45be269d41c", "reason": "Closed HDD is boxed, not an identifiable exposed magnet assembly."},
+    {"image": "train/images/motor_rf_train_095_be17d718.jpg", "sha256": "be17d718f8cf7b39f8fe0b8c8bd6693bd03a681cef3239b061be6a90955b79d2", "reason": "Box covers right blue cover rather than complete visible motor. Reannotate full assembly after original-resolution review."},
+    {"image": "train/images/oi_043f3655deab6e7c.jpg", "sha256": "15f0597b1f7e41a40b2b3016bc87cc82f9f05f26de4b406e9f7a6606a3f3ec01", "reason": "Complete handheld phone labelled Mixed_EWaste cannot establish separated electronic plastic casing."},
+    {"image": "train/images/oi_06349831cbcb8f2c.jpg", "sha256": "11ef3d689ace443991ac2800e1508f7bfecc8c0ffff6afb53cc633d987809c61", "reason": "Small boxed kitchen appliance region is ambiguous at sheet resolution. Original-resolution review required before FlatPanel approval."}
+  ]
+}

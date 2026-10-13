@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
                   {t.appTitle}
                 </span>
                 <span className="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-bold uppercase rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800">
-                  SIH #229
+                  SRIJAN 2026
                 </span>
               </div>
               <p className="text-[11px] text-slate-400 font-medium hidden sm:block">
@@ -72,12 +72,12 @@ export const Navbar: React.FC = () => {
               )}
             </div>
 
-            {/* SIH Judge Demo Guide Trigger */}
+            {/* Srijan Jury Demo Guide Trigger */}
             <button
               type="button"
               onClick={() => setShowJudgeModal(true)}
               className="px-3 py-1.5 rounded-xl font-black text-xs bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 text-white shadow-lg shadow-amber-950/40 flex items-center gap-1.5 active:scale-95 transition-all border border-amber-400/50 animate-pulse"
-              title="Open SIH 2026 Grand Finale Judge Demonstration Guide"
+              title="Open Srijan 2026 Jury Demonstration Guide"
             >
               <span>⚖️</span>
               <span className="hidden sm:inline">{t.judgeGuideBtn}</span>
@@ -166,7 +166,7 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* SIH Judge Demo Guide Modal */}
+      {/* Srijan Jury Demo Guide Modal */}
       <JudgeDemoModal isOpen={showJudgeModal} onClose={() => setShowJudgeModal(false)} />
     </header>
   );

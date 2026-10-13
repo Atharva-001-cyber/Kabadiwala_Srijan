@@ -1,7 +1,7 @@
 /**
  * Production YOLOv8-Nano ONNX Inference Engine for E-Waste Material Identification
  * Model: best.onnx (11.58 MB, Opset 12, FP32)
- * Trained on verified 8-class e-waste dataset (SIH 2026 Problem Statement 26229)
+ * Trained on verified 8-class e-waste dataset (Srijan 2026 E-Waste Track)
  * 100% On-Device & Offline via onnxruntime-web (WASM)
  */
 

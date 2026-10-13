@@ -182,7 +182,7 @@ export const LoginPage: React.FC = () => {
     setRoleConflict(null);
     setIsNewUser(false);
     if (role === 'ADMIN') {
-      setAdminPasscode('SIH2026-CPCB-ADMIN');
+      setAdminPasscode('SRIJAN2026-CPCB-ADMIN');
     }
     showToast(`Loaded ${role} Demo Phone: ${demoPhone}`, 'info');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -523,7 +523,7 @@ export const LoginPage: React.FC = () => {
                 {t.appTitle}
               </span>
               <span className="hidden sm:inline-flex px-2 py-0.5 text-[10px] font-black uppercase rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
-                SIH #229
+                SRIJAN 2026
               </span>
             </div>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block truncate">
@@ -675,7 +675,7 @@ export const LoginPage: React.FC = () => {
             </div>
 
             <div className="pt-6 mt-6 border-t border-slate-800 text-[11px] text-slate-400">
-              {language === 'hi' ? 'भारत सरकार • SIH 2026 ग्रैंड फिनाले' : language === 'mr' ? 'भारत सरकार • SIH 2026 ग्रँड फिनाले' : 'Government of India • SIH 2026 Grand Finale'}
+              {language === 'hi' ? 'भारत सरकार • सृजन 2026 ग्रैंड फिनाले' : language === 'mr' ? 'भारत सरकार • सृजन 2026 ग्रँड फिनाले' : 'Government of India • Srijan 2026 Grand Finale'}
             </div>
           </div>
 
@@ -991,13 +991,13 @@ export const LoginPage: React.FC = () => {
                           type="password"
                           value={adminPasscode}
                           onChange={(e) => setAdminPasscode(e.target.value)}
-                          placeholder="SIH2026-CPCB-ADMIN"
+                          placeholder="SRIJAN2026-CPCB-ADMIN"
                           className="w-full pl-9 pr-3 py-2 bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-500/60 rounded-xl text-slate-900 dark:text-white font-mono text-xs focus:outline-none focus:border-purple-500 shadow-sm"
                         />
                         <KeyRound className="w-4 h-4 absolute left-3 top-2.5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <p className="text-[10px] text-purple-700 dark:text-purple-300/80 font-mono">
-                        {language === 'hi' ? 'SIH जूरी पासकोड:' : language === 'mr' ? 'SIH ज्युरी पासकोड:' : 'SIH Jury Key:'} <span className="font-bold text-purple-950 dark:text-white">SIH2026-CPCB-ADMIN</span>
+                        {language === 'hi' ? 'जूरी पासकोड:' : language === 'mr' ? 'ज्युरी पासकोड:' : 'Jury Key:'} <span className="font-bold text-purple-950 dark:text-white">SRIJAN2026-CPCB-ADMIN</span>
                       </p>
                     </div>
                   )}
@@ -1027,7 +1027,7 @@ export const LoginPage: React.FC = () => {
                       </label>
                       {phone === '9876543210' || phone === '9820098200' || phone === '9999999999' ? (
                         <span className="text-[11px] text-amber-900 dark:text-amber-300 font-bold bg-amber-100 dark:bg-amber-950/80 px-2 py-0.5 rounded border border-amber-300 dark:border-amber-700/60 font-mono">
-                          {language === 'hi' ? 'SIH जज डेमो OTP:' : language === 'mr' ? 'SIH परीक्षक डेमो OTP:' : 'SIH Judge Demo OTP:'} {phone === '9820098200' ? '123456' : '1234'}
+                          {language === 'hi' ? 'जज डेमो OTP:' : language === 'mr' ? 'परीक्षक डेमो OTP:' : 'Judge Demo OTP:'} {phone === '9820098200' ? '123456' : '1234'}
                         </span>
                       ) : (
                         <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-mono font-bold bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-800">
@@ -1125,7 +1125,7 @@ export const LoginPage: React.FC = () => {
               )}
             </div>
 
-            {/* SIH Judge Evaluation Quick-Access Drawer */}
+            {/* Srijan Jury Evaluation Quick-Access Drawer */}
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
               <button
                 type="button"
@@ -1134,7 +1134,7 @@ export const LoginPage: React.FC = () => {
               >
                 <div className="flex items-center gap-1.5">
                   <Scale className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                  <span className="tracking-tight">⚖️ {language === 'hi' ? 'SIH 2026 मूल्यांकन / जज डेमो त्वरित प्रवेश' : language === 'mr' ? 'SIH 2026 मूल्यमापन / परीक्षक डेमो त्वरित प्रवेश' : 'SIH 2026 Evaluation / Judge Demo Quick-Access'}</span>
+                  <span className="tracking-tight">⚖️ {language === 'hi' ? 'सृजन 2026 मूल्यांकन / जज डेमो त्वरित प्रवेश' : language === 'mr' ? 'सृजन 2026 मूल्यमापन / परीक्षक डेमो त्वरित प्रवेश' : 'Srijan 2026 Evaluation / Judge Demo Quick-Access'}</span>
                 </div>
                 <span className="text-[10px] text-amber-700 dark:text-amber-400 font-mono font-bold">
                   {showJudgeDrawer
@@ -1248,7 +1248,7 @@ export const LoginPage: React.FC = () => {
 
       {/* Modern Compact Environmental Footer */}
       <footer className="py-2.5 px-4 sm:px-8 border-t border-slate-200 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/60 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 shrink-0">
-        <div>{language === 'hi' ? 'स्मार्ट इंडिया हैकथॉन 2026 • पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय' : language === 'mr' ? 'स्मार्ट इंडिया हॅकाथॉन 2026 • पर्यावरण, वन आणि हवामान बदल मंत्रालय' : 'Smart India Hackathon 2026 • Ministry of Environment, Forest and Climate Change'}</div>
+        <div>{language === 'hi' ? 'सृजन 2026 • पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय' : language === 'mr' ? 'सृजन 2026 • पर्यावरण, वन आणि हवामान बदल मंत्रालय' : 'Srijan 2026 • Ministry of Environment, Forest and Climate Change'}</div>
         <div className="hidden sm:block">{language === 'hi' ? 'CPCB ई-कचरा नियम 2022 • विस्तारित निर्माता उत्तरदायित्व (EPR)' : language === 'mr' ? 'CPCB ई-कचरा नियम 2022 • विस्तारित उत्पादक जबाबदारी (EPR)' : 'CPCB E-Waste Rules 2022 • Extended Producer Responsibility (EPR)'}</div>
       </footer>
     </div>

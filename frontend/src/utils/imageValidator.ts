@@ -165,7 +165,7 @@ export async function validateImageQuality(source: File | Blob | string): Promis
       }
       const contrastVariance = Math.round(Math.sqrt(varianceSum / pixelCount));
 
-      // Strict rejection checks based on SIH quality standards:
+      // Strict rejection checks based on CPCB quality standards:
       let brightness: 'GOOD' | 'TOO_DARK' | 'TOO_BRIGHT' = 'GOOD';
       let warning: { hi: string; mr: string; en: string } | undefined = undefined;
       let rejectionReason: { hi: string; mr: string; en: string } | undefined = undefined;

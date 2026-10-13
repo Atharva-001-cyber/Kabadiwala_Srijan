@@ -156,7 +156,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse,
                   {t.appTitle}
                 </span>
                 <span className="px-1.5 py-0.2 text-[8px] font-black uppercase rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 shrink-0">
-                  #229
+                  2026
                 </span>
               </div>
               <p className="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 block truncate leading-tight mt-0.5">

@@ -9,7 +9,7 @@ import shutil
 from PIL import Image
 from prepare_material_review import review_rows
 
-BLOCKERS = {'MISSING_LABEL', 'INVALID_LABEL', 'QUARANTINED_SOURCE', 'MIXED_IS_NOT_PLASTIC_BODY'}
+BLOCKERS = {'MISSING_LABEL', 'INVALID_LABEL', 'QUARANTINED_SOURCE', 'MIXED_IS_NOT_PLASTIC_BODY', 'VISUAL_LABEL_HOLD'}
 
 def stage(root, output):
     root, output = root.resolve(), output.resolve()

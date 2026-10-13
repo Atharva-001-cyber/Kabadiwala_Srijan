@@ -14,10 +14,15 @@ def apply(root, corrections, output):
         raise ValueError('Output must be fresh and outside original dataset')
     config = json.loads(Path(corrections).read_text(encoding='utf-8'))
     prepared = []
+    target_stems = set()
     for item in config['corrections']:
         source = (root/item['image']).resolve()
         if not source.is_relative_to(root):
             raise ValueError('Unsafe source path')
+        # Flattening split folders must never silently overwrite another sample.
+        if source.stem.casefold() in target_stems:
+            raise ValueError('Duplicate output label/image stem')
+        target_stems.add(source.stem.casefold())
         if hashlib.sha256(source.read_bytes()).hexdigest() != item['sha256']:
             raise ValueError('Source image hash mismatch')
         with Image.open(source) as image:

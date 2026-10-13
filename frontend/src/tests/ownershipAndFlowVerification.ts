@@ -1,5 +1,5 @@
 // Ownership, IDOR Security, and End-to-End Flow Verification Test Suite
-// SIH Problem Statement #229
+// Srijan 2026 Verification Test Suite
 // @ts-nocheck
 declare const process: any;
 
@@ -37,7 +37,7 @@ const SAMPLE_BASE64_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAA
 
 async function runVerification() {
   console.log('\n============================================================');
-  console.log('=== SIH #229: AUTH, OWNERSHIP & LIFECYCLE VERIFICATION ===');
+  console.log('=== SRIJAN 2026: AUTH, OWNERSHIP & LIFECYCLE VERIFICATION ===');
   console.log('============================================================\n');
 
   try {

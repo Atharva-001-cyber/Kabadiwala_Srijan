@@ -769,7 +769,7 @@ export const HandoverVerificationPage: React.FC = () => {
             {/* Quick Demo Presets (Crucial for SIH Presentations) */}
             <div className="space-y-1.5 pt-1">
               <div className="flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-400">
-                <span className="font-bold uppercase tracking-wider">{language === 'hi' ? 'डेमो स्केल प्रीसेट:' : language === 'mr' ? 'डेमो स्केल प्रीसेट:' : 'SIH Stage Demo Scale Presets:'}</span>
+                <span className="font-bold uppercase tracking-wider">{language === 'hi' ? 'डेमो स्केल प्रीसेट:' : language === 'mr' ? 'डेमो स्केल प्रीसेट:' : 'Stage Demo Scale Presets:'}</span>
                 <span>{language === 'hi' ? 'तुरंत फोटो बदलने के लिए क्लिक करें' : language === 'mr' ? 'फोटो बदलण्यासाठी क्लिक करा' : 'Click to switch scale photo instantly'}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">

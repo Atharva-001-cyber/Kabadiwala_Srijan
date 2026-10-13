@@ -58,7 +58,7 @@ export const GreenCertificateModal: React.FC<GreenCertificateModalProps> = ({ lo
               {t.certChainOfCustodyTitle}
             </h2>
             <p className="text-xs text-slate-600 font-medium">
-              {t.appTitle || 'Kabadiwala Connect'} • {language === 'hi' ? 'स्मार्ट इंडिया हैकथॉन 2026 (समस्या विवरण #229)' : language === 'mr' ? 'स्मार्ट इंडिया हॅकाथॉन 2026 (समस्या विवरण #229)' : 'Smart India Hackathon 2026 (PS #229)'}
+              {t.appTitle || 'Kabadiwala Connect'} • {language === 'hi' ? 'सृजन 2026 • ई-कचरा ट्रेसिबिलिटी' : language === 'mr' ? 'सृजन 2026 • ई-कचरा ट्रेसिबिलिटी' : 'Srijan 2026 • E-Waste Traceability'}
             </p>
             <div className="inline-block mt-2 px-3 py-1 bg-emerald-100 text-emerald-900 text-xs font-mono font-bold rounded-full border border-emerald-300">
               {t.certAuditRecordId}: KC-EWR-2026-{lot.id.slice(-6)}
@@ -130,7 +130,7 @@ export const GreenCertificateModal: React.FC<GreenCertificateModalProps> = ({ lo
                 <span>{t.certPlatformSeal}</span>
               </div>
               <p className="text-[10px] text-slate-500">
-                {t.appTitle || 'Kabadiwala Connect'} {language === 'hi' ? 'SIH-2026 ऑडिट ट्रेल' : language === 'mr' ? 'SIH-2026 ऑडिट ट्रेल' : 'SIH-2026 Audit Trail'}
+                {t.appTitle || 'Kabadiwala Connect'} {language === 'hi' ? 'सृजन-2026 ऑडिट ट्रेल' : language === 'mr' ? 'सृजन-2026 ऑडिट ट्रेल' : 'SRIJAN-2026 Audit Trail'}
               </p>
             </div>
           </div>

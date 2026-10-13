@@ -409,7 +409,7 @@ export const EprTraceabilityMarketplace: React.FC<EprTraceabilityMarketplaceProp
       {activeTab === 'B2B_DEMO' && (
         <div className="space-y-3 animate-fadeIn text-xs">
           <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-[11px] text-slate-700 dark:text-slate-300 flex items-center justify-between">
-            <span>Corporate B2B Simulated Marketplace (Demo for SIH Judges)</span>
+            <span>Corporate B2B Simulated Marketplace (Demo for Jury Review)</span>
             <span className="text-amber-700 dark:text-amber-300 font-bold">Proposed Framework</span>
           </div>
 

@@ -92,7 +92,7 @@ export const AdminDashboard: React.FC = () => {
                   {language === 'hi' ? 'सीपीसीबी राष्ट्रीय ई-कचरा ईपीआर निगरानी केंद्र' : language === 'mr' ? 'सीपीसीबी राष्ट्रीय ई-कचरा ईपीआर देखरेख केंद्र' : 'CPCB National E-Waste EPR Monitoring Hub'}
                 </h1>
                 <p className="text-xs text-slate-600 dark:text-purple-200/90 font-medium">
-                  {language === 'hi' ? 'केंद्रीय प्रदूषण नियंत्रण बोर्ड • एसआईएच 2026 समस्या विवरण #229' : language === 'mr' ? 'केंद्रीय प्रदूषण नियंत्रण मंडळ • एसआयएच 2026 समस्या विवरण #229' : 'Central Pollution Control Board • SIH 2026 Problem Statement #229'}
+                  {language === 'hi' ? 'केंद्रीय प्रदूषण नियंत्रण बोर्ड • सृजन 2026 ई-कचरा नवाचार' : language === 'mr' ? 'केंद्रीय प्रदूषण नियंत्रण मंडळ • सृजन 2026 ई-कचरा नवाचार' : 'Central Pollution Control Board • Srijan 2026 E-Waste Innovation'}
                 </p>
               </div>
             </div>

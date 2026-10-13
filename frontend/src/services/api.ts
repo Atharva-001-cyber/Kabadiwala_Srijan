@@ -903,9 +903,10 @@ export const api = {
     // Requires official demo phone 9999999999 OR correct master passcode SIH2026-CPCB-ADMIN
     if (role === 'ADMIN') {
       const isOfficialAdminPhone = cleanPhone === '9999999999';
-      const isCorrectPasscode = data.adminPasscode?.trim().toUpperCase() === 'SIH2026-CPCB-ADMIN';
+      const inputPasscode = data.adminPasscode?.trim().toUpperCase();
+      const isCorrectPasscode = inputPasscode === 'SRIJAN2026-CPCB-ADMIN' || inputPasscode === 'SIH2026-CPCB-ADMIN';
       if (!isOfficialAdminPhone && !isCorrectPasscode) {
-        throw new Error('Admin authorization required: Please enter valid CPCB Master Passcode (SIH2026-CPCB-ADMIN).');
+        throw new Error('Admin authorization required: Please enter valid CPCB Master Passcode (SRIJAN2026-CPCB-ADMIN).');
       }
     }
 
