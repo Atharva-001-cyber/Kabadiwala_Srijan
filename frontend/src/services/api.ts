@@ -2100,12 +2100,170 @@ export const api = {
 
     const { data: inserted } = await supabase.from('offers').insert(newOffer).select().single();
     await supabase.from('lots').update({ status: 'OFFER_RECEIVED' }).eq('id', lotId);
+    invalidateCache();
 
     return {
       success: true,
       message: 'Quote request dispatched to recycler',
       offer: mapDbOfferToOffer(inserted),
       isExisting: false
+    };
+  },
+
+  sellToRecyclerDirect: async (params: {
+    recyclerId: string;
+    lotId?: string;
+    materialCategory?: MaterialCategory;
+    weight?: number;
+    offeredRate?: number;
+    district?: string;
+  }) => {
+    let targetLotId = params.lotId;
+    const cat = params.materialCategory || 'PCB';
+    const weight = params.weight || 15;
+    const rate = params.offeredRate || 100;
+    const district = params.district || 'Lucknow';
+
+    // 1. Resolve collector identity
+    let colId = '';
+    let colName = '';
+    let colPhone = '';
+    try {
+      const cp = localStorage.getItem('collectorProfile');
+      const u = localStorage.getItem('user');
+      if (cp) {
+        const p = JSON.parse(cp);
+        colId = p.id;
+        colName = p.name;
+        colPhone = p.phone;
+      }
+      if (!colId && u) {
+        const p = JSON.parse(u);
+        colId = p.id;
+        colName = p.name || colName;
+        colPhone = p.phone || colPhone;
+      }
+    } catch {}
+
+    colId = colId || 'col_1';
+    colName = colName || 'Ramesh Kumar';
+    colPhone = colPhone || '9876543210';
+
+    // 2. Fetch Recycler details
+    const { data: rec } = await supabase.from('recyclers').select('*').eq('id', params.recyclerId).maybeSingle();
+    const recyclerName = rec?.facility_name || 'Authorized Recycler';
+
+    // 3. If no lotId provided, check if user has an existing open lot or create a new one
+    if (!targetLotId) {
+      const { data: existingLots } = await supabase
+        .from('lots')
+        .select('*')
+        .eq('collector_id', colId)
+        .eq('material_category', cat)
+        .in('status', ['CREATED', 'OFFER_RECEIVED'])
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if (existingLots && existingLots.length > 0) {
+        targetLotId = existingLots[0].id;
+      } else {
+        const lotId = `lot_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+        const minVal = Math.round(weight * rate * 0.85);
+        const maxVal = Math.round(weight * rate * 1.15);
+        const avgVal = Math.round(weight * rate);
+
+        const newLotRow = {
+          id: lotId,
+          collector_id: colId,
+          collector_name: colName,
+          collector_phone: colPhone,
+          material_category: cat,
+          sub_category: `${cat} Scrap`,
+          description: `Direct transaction scrap lot generated for ${recyclerName}.`,
+          image_url: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600',
+          image_urls: ['https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600'],
+          approx_weight: weight,
+          condition: 'INTACT',
+          source_type: 'COMMERCIAL',
+          location_district: district,
+          location_state: 'Uttar Pradesh',
+          estimated_value_min: minVal,
+          estimated_value_max: maxVal,
+          estimated_value_avg: avgVal,
+          handover_otp: Math.floor(1000 + Math.random() * 9000).toString(),
+          status: 'CREATED',
+          data_source: 'LIVE',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        const { data: created, error: cErr } = await supabase.from('lots').insert(newLotRow).select().single();
+        if (cErr) throw cErr;
+        targetLotId = created.id;
+
+        // Create Genesis Merkle Log
+        try {
+          await supabase.from('traceability_logs').insert({
+            id: `tl_col_${targetLotId}`,
+            lot_id: targetLotId,
+            stage: 'COLLECTED',
+            title: 'Lot Registered by Collector',
+            description: `Lot registered with ${weight} kg of ${cat}. Direct quote requested.`,
+            facility_location: `${district}, Uttar Pradesh`,
+            actor_role: 'COLLECTOR',
+            actor_name: colName,
+            previous_event_hash: '0000000000000000000000000000000000000000000000000000000000000000',
+            event_hash: `hash_${Date.now()}_genesis`,
+            timestamp: new Date().toISOString()
+          });
+        } catch {}
+      }
+    }
+
+    // 4. Create or retrieve the quote offer
+    const { data: existingOffer } = await supabase
+      .from('offers')
+      .select('*')
+      .eq('lot_id', targetLotId)
+      .eq('recycler_id', params.recyclerId)
+      .maybeSingle();
+
+    let finalOffer: any = existingOffer;
+
+    if (!finalOffer) {
+      const offerId = `off_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+      const total = Math.round(weight * rate);
+      const newOfferRow = {
+        id: offerId,
+        lot_id: targetLotId,
+        recycler_id: params.recyclerId,
+        recycler_name: recyclerName,
+        material_category: cat,
+        offered_rate_per_kg: rate,
+        quoted_total_price: total,
+        pickup_offered: rec?.pickup_available ?? true,
+        pickup_charge_deduction: 0,
+        net_collector_payout: total,
+        status: 'PENDING',
+        created_at: new Date().toISOString()
+      };
+
+      const { data: inserted, error: oErr } = await supabase.from('offers').insert(newOfferRow).select().single();
+      if (oErr) throw oErr;
+      finalOffer = inserted;
+    }
+
+    // 5. Update lot status to OFFER_RECEIVED
+    await supabase.from('lots').update({ status: 'OFFER_RECEIVED' }).eq('id', targetLotId);
+
+    // 6. Invalidate SWR cache
+    invalidateCache();
+
+    return {
+      success: true,
+      message: 'Direct quote requested successfully',
+      lotId: targetLotId,
+      offer: mapDbOfferToOffer(finalOffer)
     };
   },
 
